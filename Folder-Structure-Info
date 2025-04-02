@@ -1,0 +1,33 @@
+# Base Folder Structure
+
+Base/  # Contains base classes and drivers for the framework
+    __init__.py  # Marks the directory as a package
+    base_driver.py  # Base driver setup and configurations for WebDriver
+
+Data/  # Contains data-related files like locators and test data
+    __init__.py  # Marks the directory as a package
+    locators.py  # Stores locators for elements used in test cases
+
+Pages/  # Contains page object model (POM) classes for each web page
+    __init__.py  # Marks the directory as a package
+
+Results/  # Stores test execution results and logs
+
+Screenshot/  # Stores captured screenshots from test runs
+
+TestCases/  # Contains all test cases
+    __init__.py  # Marks the directory as a package
+    conftest.py  # Pytest configuration and fixture setup
+
+Utilities/  # Contains utility functions and helper classes
+    __init__.py  # Marks the directory as a package
+    utils.py  # Helper functions used in test cases
+
+config.ini  # Configuration file for storing environment settings and credentials
+requirements.txt  # Lists all dependencies required for the framework
+
+# Installation Guide
+Create a virtual environment: py -m venv .venv
+Activate the virtual environment executing the following script: .\.venv\Scripts\activate
+Execute the following command to download the necessary libraries: pip install -r requirements.txt
+From the project root directory run: pytest -v --html=Results/report.html --self-contained-html
