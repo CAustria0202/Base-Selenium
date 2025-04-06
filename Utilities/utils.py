@@ -55,3 +55,27 @@ class Utils(BaseDriver):
         """
         error_message = error_message or f"{element} was not found on the page"
         assert element is not None, error_message
+
+    @staticmethod
+    def is_image_file(file_path: str) -> bool:
+        """This helper checks if the file has a valid image extension"""
+        allowed_extensions = ('.png','.jpg','.jpeg')
+        return file_path.lower().endswith(allowed_extensions)
+
+    def upload_image_file(self, input_locator: tuple[By, str], file_path: str) -> bool:
+        """ This helper upload an image file using the input field specified by the locator """
+
+        if not os.path.isfile(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
+
+        if not Utils.is_image_file(file_path):
+            print(f"Invalid file type: {file_path} is not an image")
+            return False
+
+        try:
+            file_input = self.wait_for_presence_of_the_element(*input_locator)
+            file_input.send_keys(file_path)
+            return True
+        except Exception as e:
+            print(f"Error uploading file: {e}")
+            return False
